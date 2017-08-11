@@ -5,7 +5,7 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-/*var articles = {
+var articles = {
  'article-one': {
  title: 'Article one | Priya',
  heading: 'Article one',
@@ -26,7 +26,8 @@ app.use(morgan('combined'));
  date: 'Aug 12, 2017',
  content: ` <p>This is my third article.This is my third article.</p>`
 }
-};*/
+};
+/*
 var articleOne = {
     title: 'Article one | Priya',
  heading: 'Article one',
@@ -34,7 +35,7 @@ var articleOne = {
  content: ` <p>This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.</p>
             <p>This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.</p>
             <p>This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.This is my first article.</p>`
-};
+};*/
 
 function createTemplate(data) {
     var title = data.title;
@@ -71,10 +72,12 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-/*app.get('/:articleName', function (req, res) {
-    var articleName = req.params.articelName;
+app.get('/:articleName', function (req, res) {
+    var articleName = req.params.articleName;
    res.send(createTemplate(articles[articleName]));
-});*/
+});
+
+/*
 app.get('/article-one', function (req, res) {
    res.send(createTemplate(articleOne));
 });
@@ -86,7 +89,7 @@ app.get('/article-two', function (req, res) {
 
 app.get('/article-three', function (req, res) {
    res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
+});*/
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
