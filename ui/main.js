@@ -12,15 +12,26 @@ img.onclick = function () {
     var interval = setInterval(moveRight,50);
 };*/
 var button = document.getElementById('counter');
-var counter = 0;
+
 button.onclick = function(){
     
     //make a request to the counter endpoint
+    var request = new XMLHttpRequest();
     
-    //capture the response ans store it in a variable
+    //capture the response and store it in a variable
+    request.onreadystatechange = function(){
+        if(request.readyState == XMLHttpRequest.Done){
+            
+            if(request.status == 200){
+                var counter =request.responseText;
+                var span = document.getElementById('count');
+    span.innerHTML = counter;
+                
+            }
+        }
+        }
     
     //render the variable in the correct span
-    counter = counter +1;
-    var span = document.getElementById('count');
-    span.innerHTML = counter;
-}
+    
+    
+};
