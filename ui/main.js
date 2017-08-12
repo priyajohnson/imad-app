@@ -15,7 +15,7 @@ var button = document.getElementById('counter');
 
 button.onclick = function(){
     
-    //make a request to the counter endpoint
+    //create a request to the counter endpoint
     var request = new XMLHttpRequest();
     
     //capture the response and store it in a variable
@@ -32,7 +32,9 @@ button.onclick = function(){
         
         };
     
-    //render the variable in the correct span
+    // make the request
+    request.open('GET','http://priyajohnson.imad.hasura-app.io/counter',true);
+    request.send(null);
     
     
 };
