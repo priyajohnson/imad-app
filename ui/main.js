@@ -1,5 +1,5 @@
 console.log('Loaded!');
-var element = docuemnt.getElementById('main-text');
+var element = document.getElementById('main-text');
 element.innerHTML = 'New value';
 //move the image
 var img = document.getElementById('maddi');
