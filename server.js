@@ -6,7 +6,7 @@ var config = {
     user:  'priyajohnson',
     database: 'priyajohnson',
     host: 'http://db.imad.hasura-app.io',
-    port: '5432',
+    port: 'localhost:5432',
     password: process.env.DB_PASSWORD
 };
 var app = express();
@@ -81,15 +81,15 @@ app.get('/', function (req, res) {
 var pool = new Pool(config);
 app.get('/test-db',function(req,res)
 {
-    pool.query('SELECT * from test',function(err,result){
+    pool.query('SELECT * FROM test',function(err,result){
         if(err){
             res.status(500).send(err.toString());
         }
         else{
             res.semd(JSON.stringify(result));
         }
-    })
-})
+    });
+});
 var counter =0;
 app.get('/counter', function (req, res) {
     counter = counter +1;
