@@ -6,7 +6,7 @@ var crypto = require('crypto');
 var config = {
     user:  'priyajohnson',
     database: 'priyajohnson',
-    host: 'http://db.imad.hasura-app.io',
+    host: 'db.imad.hasura-app.io',
     port: '5432',
     password: process.env.DB_PASSWORD
 };
