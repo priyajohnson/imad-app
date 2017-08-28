@@ -129,6 +129,30 @@ app.get('/articles/:articleName', function (req, res) {
    //res.send(createTemplate(articles[articleName]));
 });
 
+app.post('/login',function(req,res){
+   var username = req.body.username;
+   var password = req.body.password;
+   pool.query('SELECT * from user_view where username = $1', [username], function(err,result){
+        if(err){
+            res.status(500).send(err.toString());
+        }else if(result.rows.length === 0){
+            res,send(403).send('username/password is invalid');
+        }
+        else{
+            //match the password
+            var dbString = result.rows[0].password;
+            var salt = dbString.split('$')[2];
+            var hashPassword = hash(password,salt); //hash based on salt and password submitted
+            if(hashPassword == dbString){
+            res.send('User valid);
+            }
+            else{
+                res.send(403).send('username/password incorrect');
+            }
+        }
+   });
+});
+
 app.post('/create-user',function(req,res){
     //JSON
     var username = req.body.username;
