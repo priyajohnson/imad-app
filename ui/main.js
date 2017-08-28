@@ -70,7 +70,7 @@ button.onclick = function(){
     var username = document.getElementById('username').value;
      var password = document.getElementById('password').value;
     request.open('POST','http://priyajohnson.imad.hasura-app.io/LOGIN',true);
-    requestSetRequestHeader('Content-Type','application/json');
+    request.setRequestHeader('Content-Type','application/json');
     request.send(JSON.stringif({username:username,password:password}));
    
     
