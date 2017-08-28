@@ -124,7 +124,7 @@ app.get('/articles/:articleName', function (req, res) {
         
     });
     //EXPRESS FRAMEWORK FEATURE
-   res.send(createTemplate(articles[articleName]));
+   //res.send(createTemplate(articles[articleName]));
 });
 
 /*
