@@ -52,21 +52,26 @@ button.onclick = function(){
         if(request.readyState == XMLHttpRequest.DONE){
             
             if(request.status == 200){
-                var counter =request.responseText;
-                var span = document.getElementById('count');
-    span.innerHTML = counter.toString();
+                console.log('userlogged in');
+                alert('Logged in successfully');
                 
+            }else if(request.status === 403)
+            {
+                alert('username/password incorrect');
+            }
+            else if(request.status === 500){
+                alert('something went wrong');
             }
         }
         
         };
     
     // make the request
-    request.open('GET','http://priyajohnson.imad.hasura-app.io/counter',true);
-    request.send(null);
-    /*
-    request.open('GET','http://priyajohnson.imad.hasura-app.io/counter',true);
-    request.send(null);*/
+    var username = document.getElementById('username').value;
+     var password = document.getElementById('password').value;
+    request.open('POST','http://priyajohnson.imad.hasura-app.io/LOGIN',true);
+    request.send(JSON.stringif({username:username,password:password}));
+   
     
     
 };
