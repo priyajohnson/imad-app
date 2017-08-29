@@ -154,7 +154,7 @@ app.get('/login/:username&:password',function(req,res){
    });
 });
 
-
+/*
 app.post('/login',function(req,res){
    var username = req.body.username;
    var password = req.body.password;
@@ -178,7 +178,7 @@ app.post('/login',function(req,res){
         }
    });
 });
-
+*/
 app.post('/create-user',function(req,res){
     //JSON
     var username = req.body.username;
