@@ -93,8 +93,8 @@ app.get('/hash/:input',function(req,res){
 
 var pool = new Pool(config);
 //login with parameters
-app.get('/login/:username',function(req,res){
-   var username = req.params.username;
+app.get('/login',function(req,res){
+   var username = 'betty';//req.params.username;
    var password = 'password';//req.params.password;
    pool.query('SELECT * from user_view where username = $1', [username], function(err,result){
         if(err){
