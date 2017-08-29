@@ -93,7 +93,7 @@ app.get('/hash/:input',function(req,res){
 
 var pool = new Pool(config);
 //login with parameters
-app.get('/userlogin',function(req,res){
+/*app.get('/userlogin',function(req,res){
    var username = 'betty';//req.params.username;
    var password = 'password';//req.params.password;
    pool.query('SELECT * from user_view where username = $1', [username], function(err,result){
@@ -115,7 +115,7 @@ app.get('/userlogin',function(req,res){
             }
         }
    });
-});
+});*/
 app.get('/test-db',function(req,res)
 {
     pool.query('SELECT * FROM test',function(err,result){
@@ -155,7 +155,7 @@ app.get('/articles/:articleName', function (req, res) {
 
 
 
-/*
+
 app.post('/login',function(req,res){
    var username = req.body.username;
    var password = req.body.password;
@@ -179,7 +179,7 @@ app.post('/login',function(req,res){
         }
    });
 });
-*/
+
 app.post('/create-user',function(req,res){
     //JSON
     var username = req.body.username;
