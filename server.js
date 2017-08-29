@@ -92,6 +92,30 @@ app.get('/hash/:input',function(req,res){
 });
 
 var pool = new Pool(config);
+//login with parameters
+app.get('/login/:username/:password',function(req,res){
+   var username = req.params.username;
+   var password = req.params.password;
+   pool.query('SELECT * from user_view where username = $1', [username], function(err,result){
+        if(err){
+            res.status(500).send(err.toString());
+        }else if(result.rows.length === 0){
+            res,send(403).send('username/password is invalid');
+        }
+        else{
+            //match the password
+            var dbString = result.rows[0].password;
+            var salt = dbString.split('$')[2];
+            var hashPassword = hash(password,salt); //hash based on salt and password submitted
+            if(hashPassword == dbString){
+            res.send('User valid');
+            }
+            else{
+                res.send(403).send('username/password incorrect');
+            }
+        }
+   });
+});
 app.get('/test-db',function(req,res)
 {
     pool.query('SELECT * FROM test',function(err,result){
@@ -129,30 +153,7 @@ app.get('/articles/:articleName', function (req, res) {
    //res.send(createTemplate(articles[articleName]));
 });
 
-//login with parameters
-app.get('/login/:username&:password',function(req,res){
-   var username = req.params.username;
-   var password = req.params.password;
-   pool.query('SELECT * from user_view where username = $1', [username], function(err,result){
-        if(err){
-            res.status(500).send(err.toString());
-        }else if(result.rows.length === 0){
-            res,send(403).send('username/password is invalid');
-        }
-        else{
-            //match the password
-            var dbString = result.rows[0].password;
-            var salt = dbString.split('$')[2];
-            var hashPassword = hash(password,salt); //hash based on salt and password submitted
-            if(hashPassword == dbString){
-            res.send('User valid');
-            }
-            else{
-                res.send(403).send('username/password incorrect');
-            }
-        }
-   });
-});
+
 
 /*
 app.post('/login',function(req,res){
