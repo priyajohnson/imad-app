@@ -77,6 +77,7 @@ button.onclick = function(){
     request.open('POST','http://priyajohnson.imad.hasura-app.io/login',true);
    // request.setRequestHeader('Content-Type','application/json');
     //request.send(JSON.stringify({username:username,password:password}));
+    console.log('bettyuuu');
    
     
     
